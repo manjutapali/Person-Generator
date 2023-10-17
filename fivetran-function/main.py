@@ -9,7 +9,7 @@ def main(request):
     state = {}
     state['transactionsCursor'] = newTransactionCursor
     transactionsSchema = {}
-    transactionsSchema['primary_key'] = ['meghanburgess', 'sex']
+    transactionsSchema['primary_key'] = ['username', 'sex']
     schema = {}
     schema['transactions'] = transactionsSchema
     response = {}
