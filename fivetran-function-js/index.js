@@ -1,12 +1,10 @@
-exports.main = (request, context, callback) => {
-    callback(null, fetch(request.state, request.secrets));
-};
+const functions = require('@google-cloud/functions-framework');
 
-function fetch(state, secrets) {
-    // Fetch records using api calls
-    let [insertTransactions, deleteTransactions, newTransactionsCursor] = apiResponse(state, secrets);
+functions.http('main', (req, res) => {
+    let [insertTransactions, deleteTransactions, newTransactionsCursor] = apiResponse();
+    
     // Populate records and state
-    return ({
+    res.send({
         state: {
             transactionsCursor: newTransactionsCursor
         },
@@ -23,9 +21,10 @@ function fetch(state, secrets) {
         },
         hasMore : false
     });
-}
+});
 
-function apiResponse(state, secrets) {
+
+function apiResponse() {
     var insertTransactions = [
             {"date":'2017-12-31T05:12:05Z', "order_id":1001, "amount":'$1200', "discount":'$12'},
             {"date":'2017-12-31T06:12:04Z', "order_id":1001, "amount":'$1200', "discount":'$12'},
