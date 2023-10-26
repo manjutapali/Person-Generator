@@ -2,6 +2,8 @@ const functions = require('@google-cloud/functions-framework');
 
 functions.http('main', (req, res) => {
     let [insertTransactions, deleteTransactions, newTransactionsCursor] = apiResponse();
+
+    console.log("Returning the response...")
     
     // Populate records and state
     res.send({
