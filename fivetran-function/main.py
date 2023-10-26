@@ -19,6 +19,7 @@ def main(request):
     response['delete'] = delete
     response['schema'] = schema
     response['hasMore'] = False
+    print("Returning the response...")
     return response
 
 def generateProfile():
