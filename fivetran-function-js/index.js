@@ -1,8 +1,8 @@
-exports.handler = (request, context, callback) => {
-    callback(null, main(request.state, request.secrets));
+exports.main = (request, context, callback) => {
+    callback(null, fetch(request.state, request.secrets));
 };
 
-function main(state, secrets) {
+function fetch(state, secrets) {
     // Fetch records using api calls
     let [insertTransactions, deleteTransactions, newTransactionsCursor] = apiResponse(state, secrets);
     // Populate records and state
